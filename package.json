@@ -1,0 +1,45 @@
+{
+  "name": "ratchet-front",
+  "version": "1.0.0",
+  "description": "Front end for ratchet-api",
+  "scripts": {
+    "start": "webpack-serve ./webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plhosk/ratchet-front.git"
+  },
+  "author": "Paul Hoskinson <plhosk@gmail.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/plhosk/ratchet-front#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
+    "html-webpack-plugin": "^3.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-hot-loader": "^4.3.3",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.2",
+    "webpack-serve": "^2.0.2"
+  }
+}
