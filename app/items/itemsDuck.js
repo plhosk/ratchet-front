@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 
-import apiHost from '../apiHost'
+import { apiHost, statusHandler } from '../api'
 
 const reducer = (state = {
   itemList: [],
@@ -23,13 +23,17 @@ const reducer = (state = {
   }
 }
 
+const itemsListApi = () => fetch(`${apiHost}/items`)
+  .then(statusHandler)
+  .then(response => response.json())
+
 function* itemsList() {
   try {
-    const result = yield call(() => fetch(`${apiHost}/api/items`).then(response => response.json()))
+    const result = yield call(itemsListApi)
     yield put({ type: 'ITEMS_LIST_FULFILLED', payload: result })
   } catch (e) {
     yield put({ type: 'ITEMS_LIST_ERROR', payload: e })
-    yield call(error => console.log(`Items list error: ${error.message || ''}`), e) // eslint-disable-line no-console
+    // yield call(error => console.log(`Items list error: ${error.message || ''}`), e) // eslint-disable-line no-console
   }
 }
 

@@ -7,12 +7,12 @@ module.exports = {
     main: [
       'babel-polyfill',
       'isomorphic-fetch',
-      'webpack-hot-middleware/client',
+      // 'webpack-hot-middleware/client',
       './app/Entry',
     ],
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].js',
   },
@@ -20,7 +20,7 @@ module.exports = {
     modules: [
       'node_modules',
     ],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.css'],
   },
   module: {
     rules: [
@@ -38,9 +38,28 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
       },
+      // antd css files don't use CSS Modules
+      {
+        test: /antd.*\.css$/,
+        loaders: [
+          'style-loader?sourceMap',
+          'css-loader',
+        ],
+      },
       {
         test: /\.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+        exclude: /antd.*\.css$/,
+        loaders: [
+          'style-loader?sourceMap',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+            },
+          },
+        ],
       },
     ],
   },

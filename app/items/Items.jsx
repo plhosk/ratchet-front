@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+// import { DatePicker } from 'antd'
+
+import './Items.css'
 
 class Items extends React.Component {
   componentDidMount() {
@@ -14,7 +17,7 @@ class Items extends React.Component {
     const { itemList } = this.props
     return (
       <div>
-        <h3>
+        <h3 styleName="red">
           Items
         </h3>
         <ul>
@@ -24,6 +27,7 @@ class Items extends React.Component {
             </li>
           ))}
         </ul>
+        {/* <DatePicker /> */}
       </div>
     )
   }
