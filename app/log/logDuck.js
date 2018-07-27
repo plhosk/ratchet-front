@@ -6,10 +6,10 @@ const reducer = (state = {
   log: [],
 }, action) => {
   switch (action.type) {
-    case 'LOG_FETCH':
+    case 'LOG_FETCH_FULFILLED':
       return {
         ...state,
-        loading: true,
+        log: action.payload,
       }
     default:
       return state
@@ -26,7 +26,6 @@ function* logFetch() {
     yield put({ type: 'LOG_FETCH_FULFILLED', payload: result })
   } catch (e) {
     yield put({ type: 'LOG_FETCH_ERROR', payload: e })
-    // yield call(error => console.log(`Log fetch error: ${error.message || ''}`), e) // eslint-disable-line no-console
   }
 }
 

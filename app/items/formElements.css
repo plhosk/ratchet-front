@@ -1,0 +1,71 @@
+.container {
+  text-transform: uppercase;
+}
+
+.custom-input {
+  border: 4px ridge white;
+  margin: 1em 0;
+  background: #9A9FA9;
+  color: #eee;
+  text-transform: uppercase;
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-button {
+  composes: custom-input;
+  background: none;
+  margin-top: 17px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.custom-button:active {
+  margin-top: 20px;
+  margin-left: 2px;
+  border-style: groove;
+}
+
+.search-input {
+  composes: custom-input;
+  padding-right: 3em;
+}
+
+.column-selector {
+  margin-bottom: 3em;
+}
+
+.validation-message {
+  height: 3em;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.search-container {
+  margin-top: 2em;
+  margin-right: -1em;
+}
+
+.label-small {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.search-button {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.search-icon {
+  width: 1;
+  height: 1;
+  position: relative;
+  top: 1.8em;
+  right: 1.8em;
+}

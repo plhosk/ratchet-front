@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background-color: #79808D;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 0.5em;
+  color: white;
+}
+
+.intro-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Merriweather', serif;
+  font-weight: normal;
+  font-style: italic;
+  font-size: 3em;
+  margin: 14px;
+}
+
+.description {
+  color: #8EFEED;
+  font-size: 1.2em;
+  max-width: 450px;
+  margin-left: 16px;
+  margin-bottom: 2.5em;
+}
+
+.checkbox-div {
+  text-transform: uppercase;
+}
+
+.checkbox {
+  transform: scale(1.5);
+  margin-right: 8px;
+}

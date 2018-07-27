@@ -1,0 +1,25 @@
+.tab-flex {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.header-bar {
+  text-align: center;
+  padding: 0.7em;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  transition: all 300ms;
+}
+
+.active-tab {
+  composes: header-bar;
+  background: linear-gradient(#C0C7D3, #818D9F);
+  flex-basis: 70%;
+}
+
+.background-tab {
+  composes: header-bar;
+  background: linear-gradient(#ddd, #aaa);
+  flex-basis: 20%;
+}

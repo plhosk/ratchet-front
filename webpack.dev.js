@@ -1,5 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const history = require('connect-history-api-fallback')
+const convert = require('koa-connect')
 
 module.exports = {
   mode: 'development',
@@ -38,17 +40,8 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel-loader',
       },
-      // antd css files don't use CSS Modules
-      {
-        test: /antd.*\.css$/,
-        loaders: [
-          'style-loader?sourceMap',
-          'css-loader',
-        ],
-      },
       {
         test: /\.css$/,
-        exclude: /antd.*\.css$/,
         loaders: [
           'style-loader?sourceMap',
           {
@@ -56,6 +49,7 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
+              // localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
               localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
             },
           },
@@ -68,11 +62,20 @@ module.exports = {
       inject: true,
       chunks: ['main'],
       filename: 'index.html',
-      template: 'lib/index.ejs',
+      template: 'template/index.ejs',
     }),
   ],
   // devtool: 'eval', // fast but line numbers don't correspond. no maps from loaders
   devtool: 'cheap-module-eval-source-map', // as below but w/ module source maps
   // devtool: 'cheap-eval-source-map', // lines only. no maps from loaders
   // devtool: 'eval-source-map', // best & slowest. includes column mapping
+  serve: { // map SPA requests to index.html
+    content: path.join(__dirname, 'dist'),
+    add: (app, middleware, options) => { // eslint-disable-line
+      const historyOptions = {
+        // ... see: https://github.com/bripkens/connect-history-api-fallback#options
+      }
+      app.use(convert(history(historyOptions)))
+    },
+  },
 }

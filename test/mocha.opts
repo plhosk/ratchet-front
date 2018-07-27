@@ -1,0 +1,9 @@
+--require babel-polyfill
+--require raf/polyfill
+--require isomorphic-fetch
+--require babel-register
+--require jsdom-global/register
+--require ignore-styles
+test/testSetup.js
+app/**/*.spec.js*
+--exit

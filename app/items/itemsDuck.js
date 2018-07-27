@@ -4,19 +4,18 @@ import { apiHost, statusHandler } from '../api'
 
 const reducer = (state = {
   itemList: [],
-  loading: false,
+  search: '',
 }, action) => {
   switch (action.type) {
-    case 'ITEMS_LIST':
-      return {
-        ...state,
-        loading: true,
-      }
     case 'ITEMS_LIST_FULFILLED':
       return {
         ...state,
         itemList: action.payload,
-        loading: false,
+      }
+    case 'ITEMS_SEARCH':
+      return {
+        ...state,
+        search: action.payload,
       }
     default:
       return state
@@ -37,8 +36,49 @@ function* itemsList() {
   }
 }
 
+
+const itemsAddApi = item => fetch(`${apiHost}/items`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(item),
+})
+  .then(statusHandler)
+  .then(response => response.json())
+
+function* itemsAdd(action) {
+  try {
+    const result = yield call(itemsAddApi, action.payload)
+    yield put({ type: 'ITEMS_ADD_FULFILLED', payload: result })
+    yield put({ type: 'ITEMS_LIST' })
+  } catch (e) {
+    yield put({ type: 'ITEMS_ADD_ERROR', payload: e })
+  }
+}
+
+
+const itemsDeleteApi = id => fetch(`${apiHost}/items/${id}`, {
+  method: 'DELETE',
+})
+  .then(statusHandler)
+  .then(response => response.json())
+
+function* itemsDelete(action) {
+  try {
+    const result = yield call(itemsDeleteApi, action.payload)
+    yield put({ type: 'ITEMS_DELETE_FULFILLED', payload: result })
+    yield put({ type: 'ITEMS_LIST' })
+  } catch (e) {
+    yield put({ type: 'ITEMS_DELETE_ERROR', payload: e })
+  }
+}
+
+
 function* sagas() {
   yield takeLatest('ITEMS_LIST', itemsList)
+  yield takeLatest('ITEMS_ADD', itemsAdd)
+  yield takeLatest('ITEMS_DELETE', itemsDelete)
 }
 
 export {

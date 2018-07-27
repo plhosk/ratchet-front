@@ -1,12 +1,11 @@
 {
-  "presets": [["env", { "modules": false }], "stage-0", "react"],
+  "presets": [["env"], "stage-0", "react"],
   "plugins": [
-    ["import", {
-      "libraryName": "antd",
-      "libraryDirectory": "es",
-      "style": "css"
-    }],
     "react-hot-loader/babel",
-    "react-css-modules"
+    ["react-css-modules", {
+        "handleMissingStyleName": "warn"
+      }
+    ],
+    "dynamic-import-node"
   ]
 }

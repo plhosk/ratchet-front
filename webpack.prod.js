@@ -24,7 +24,7 @@ module.exports = {
     modules: [
       'node_modules',
     ],
-    extensions: ['.js', '.jsx', '.css'],
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
@@ -43,15 +43,7 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
-        test: /antd.*\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
-      },
-      {
         test: /\.(css)$/,
-        exclude: /antd.*\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -70,7 +62,7 @@ module.exports = {
       inject: true,
       chunks: ['main'],
       filename: 'index.html',
-      template: 'lib/index.ejs',
+      template: 'template/index.ejs',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[chunkhash:4].css',
